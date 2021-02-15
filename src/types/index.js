@@ -9,3 +9,4 @@ export const GET_TASKS_BY_ID = "GET_TASKS_BY_ID";
 export const ADD_TASK = "ADD_TASK";
 export const SHOW_TASK_ERROR = "SHOW_TASK_ERROR";
 export const DELETE_TASK = "DELETE_TASK";
+export const CHANGE_TASK_STATE = "CHANGE_TASK_STATE";
