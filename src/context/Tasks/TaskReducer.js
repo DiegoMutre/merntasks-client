@@ -1,4 +1,9 @@
-import { ADD_TASK, GET_TASKS_BY_ID, SHOW_TASK_ERROR } from "../../types";
+import {
+    ADD_TASK,
+    DELETE_TASK,
+    GET_TASKS_BY_ID,
+    SHOW_TASK_ERROR,
+} from "../../types";
 
 const TaskReducer = (state, action) => {
     switch (action.type) {
@@ -19,6 +24,11 @@ const TaskReducer = (state, action) => {
             return {
                 ...state,
                 taskHasError: true,
+            };
+        case DELETE_TASK:
+            return {
+                ...state,
+                tasks: state.tasks.filter(task => task.id !== action.payload),
             };
         default:
             return state;
