@@ -7,3 +7,4 @@ export const DELETE_PROJECT = "DELETE_PROJECT";
 
 export const GET_TASKS_BY_ID = "GET_TASKS_BY_ID";
 export const ADD_TASK = "ADD_TASK";
+export const SHOW_TASK_ERROR = "SHOW_TASK_ERROR";
