@@ -5,6 +5,11 @@ import projectReducer from "./ProjectReducer";
 
 const ProjectState = props => {
     const initialState = {
+        projects: [
+            { id: 1, name: "Online shop" },
+            { id: 2, name: "Web Design" },
+            { id: 3, name: "To do homework" },
+        ],
         showForm: false,
     };
 
@@ -20,6 +25,7 @@ const ProjectState = props => {
     return (
         <ProjectContext.Provider
             value={{
+                projects: state.projects,
                 showForm: state.showForm,
                 toggleForm,
             }}
