@@ -2,7 +2,13 @@ import { useContext, useState } from "react";
 import ProjectContext from "../../context/Projects/ProjectContext";
 
 const NewProject = () => {
-    const { showForm, toggleForm, addProject } = useContext(ProjectContext);
+    const {
+        hasError,
+        showForm,
+        toggleForm,
+        addProject,
+        showError,
+    } = useContext(ProjectContext);
 
     const [project, setProject] = useState({ name: "" });
 
@@ -15,6 +21,7 @@ const NewProject = () => {
 
         // TODO: Show alert
         if (project.name.trim() === "") {
+            showError();
             return;
         }
 
@@ -50,6 +57,9 @@ const NewProject = () => {
                         className="btn btn-primario btn-block"
                     />
                 </form>
+            )}
+            {hasError && (
+                <p className="mensaje error">The project name is required</p>
             )}
         </>
     );
