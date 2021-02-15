@@ -1,17 +1,27 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ProjectContext from "../../context/Projects/ProjectContext";
+import TaskContext from "../../context/Tasks/TaskContext";
 
 const TaskForm = () => {
+    const [task, setTask] = useState({ name: "" });
     const { project } = useContext(ProjectContext);
+    const { addTask } = useContext(TaskContext);
 
     if (!project) {
         return null;
     }
 
+    const handleChange = e => {
+        setTask({ ...task, [e.target.name]: e.target.value });
+    };
+
+    const [currentProject] = project;
+
     const handleSubmit = e => {
         e.preventDefault();
 
-        // TODO: Validate and add a new task
+        // TODO: Validate
+        addTask({ ...task, projectId: currentProject.id, state: false });
     };
 
     return (
@@ -23,6 +33,8 @@ const TaskForm = () => {
                         className="input-text"
                         name="name"
                         placeholder="Task Name"
+                        value={task.name}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="contenedor-input">
