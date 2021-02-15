@@ -8,9 +8,15 @@ const TaskForm = () => {
         return null;
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // TODO: Validate and add a new task
+    };
+
     return (
         <div className="formulario">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="contenedor-input">
                     <input
                         type="text"
