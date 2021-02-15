@@ -1,5 +1,6 @@
 import {
     ADD_PROJECT,
+    GET_CURRENT_PROJECT,
     GET_PROJECTS,
     PROJECT_FORM,
     SHOW_ERROR,
@@ -25,6 +26,13 @@ const projectReducer = (state, action) => {
             return {
                 ...state,
                 hasError: true,
+            };
+        case GET_CURRENT_PROJECT:
+            return {
+                ...state,
+                project: state.projects.filter(
+                    project => project.id === action.payload
+                ),
             };
         default:
             return state;
