@@ -21,6 +21,7 @@ const TasksList = () => {
                     projectTasks.map((task, i) => <Task key={i} task={task} />)
                 )}
             </ul>
+            <button className="btn btn-eliminar">Delete Project &times;</button>
         </>
     );
 };
