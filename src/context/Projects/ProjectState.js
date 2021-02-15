@@ -61,6 +61,7 @@ const ProjectState = props => {
     return (
         <ProjectContext.Provider
             value={{
+                project: state.project,
                 projects: state.projects,
                 showForm: state.showForm,
                 hasError: state.hasError,
