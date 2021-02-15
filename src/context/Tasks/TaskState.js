@@ -5,6 +5,7 @@ import {
     DELETE_TASK,
     GET_TASKS_BY_ID,
     SHOW_TASK_ERROR,
+    GET_CURRENT_TASK,
 } from "../../types";
 import TaskContext from "./TaskContext";
 import TaskReducer from "./TaskReducer";
@@ -27,6 +28,7 @@ const TaskState = props => {
         ],
         projectTasks: null,
         taskHasError: false,
+        selectedTask: null,
     };
 
     const [state, dispatch] = useReducer(TaskReducer, initialState);
@@ -65,6 +67,13 @@ const TaskState = props => {
         });
     };
 
+    const getCurrentTask = task => {
+        dispatch({
+            type: GET_CURRENT_TASK,
+            payload: task,
+        });
+    };
+
     return (
         <TaskContext.Provider
             value={{
@@ -76,6 +85,7 @@ const TaskState = props => {
                 showTaskError,
                 deleteTask,
                 changeTaskState,
+                getCurrentTask,
             }}
         >
             {props.children}
