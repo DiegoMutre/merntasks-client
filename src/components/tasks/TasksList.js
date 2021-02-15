@@ -3,7 +3,7 @@ import ProjectContext from "../../context/Projects/ProjectContext";
 import Task from "./Task";
 
 const TasksList = () => {
-    const { project } = useContext(ProjectContext);
+    const { project, deleteProject } = useContext(ProjectContext);
 
     if (!project) {
         return <h2>Select a Project</h2>;
@@ -18,6 +18,10 @@ const TasksList = () => {
         { name: "Choose Typography", state: false },
     ];
 
+    const handleDelete = () => {
+        deleteProject(currentProject.id);
+    };
+
     return (
         <>
             <h2>Project: {currentProject.name}</h2>
@@ -30,7 +34,9 @@ const TasksList = () => {
                     projectTasks.map((task, i) => <Task key={i} task={task} />)
                 )}
             </ul>
-            <button className="btn btn-eliminar">Delete Project &times;</button>
+            <button className="btn btn-eliminar" onClick={handleDelete}>
+                Delete Project &times;
+            </button>
         </>
     );
 };
