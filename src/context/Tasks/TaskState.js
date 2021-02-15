@@ -19,6 +19,7 @@ const TaskState = props => {
             { name: "Choose Hosting 2", state: false, projectId: 2 },
             { name: "Choose Typography", state: false, projectId: 2 },
         ],
+        projectTasks: null,
     };
 
     const [state, dispatch] = useReducer(TaskReducer, initialState);
@@ -34,6 +35,7 @@ const TaskState = props => {
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
+                projectTasks: state.projectTasks,
                 getTasksById,
             }}
         >
