@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { ADD_TASK, GET_TASKS_BY_ID } from "../../types";
+import { ADD_TASK, GET_TASKS_BY_ID, SHOW_TASK_ERROR } from "../../types";
 import TaskContext from "./TaskContext";
 import TaskReducer from "./TaskReducer";
 
@@ -20,6 +20,7 @@ const TaskState = props => {
             { name: "Choose Typography", state: false, projectId: 2 },
         ],
         projectTasks: null,
+        taskHasError: false,
     };
 
     const [state, dispatch] = useReducer(TaskReducer, initialState);
@@ -38,13 +39,21 @@ const TaskState = props => {
         });
     };
 
+    const showTaskError = () => {
+        dispatch({
+            type: SHOW_TASK_ERROR,
+        });
+    };
+
     return (
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
                 projectTasks: state.projectTasks,
+                taskHasError: state.taskHasError,
                 getTasksById,
                 addTask,
+                showTaskError,
             }}
         >
             {props.children}
