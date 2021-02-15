@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import { GET_TASKS_BY_ID } from "../../types";
 import TaskContext from "./TaskContext";
 import TaskReducer from "./TaskReducer";
 
@@ -22,10 +23,18 @@ const TaskState = props => {
 
     const [state, dispatch] = useReducer(TaskReducer, initialState);
 
+    const getTasksById = projectId => {
+        dispatch({
+            type: GET_TASKS_BY_ID,
+            payload: projectId,
+        });
+    };
+
     return (
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
+                getTasksById,
             }}
         >
             {props.children}
