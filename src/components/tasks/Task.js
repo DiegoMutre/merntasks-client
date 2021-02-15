@@ -3,9 +3,12 @@ import ProjectContext from "../../context/Projects/ProjectContext";
 import TaskContext from "../../context/Tasks/TaskContext";
 
 const Task = ({ task }) => {
-    const { deleteTask, getTasksById, changeTaskState } = useContext(
-        TaskContext
-    );
+    const {
+        deleteTask,
+        getTasksById,
+        changeTaskState,
+        getCurrentTask,
+    } = useContext(TaskContext);
     const { project } = useContext(ProjectContext);
 
     const handleDelete = () => {
@@ -20,6 +23,10 @@ const Task = ({ task }) => {
             task.state = true;
         }
         changeTaskState(task);
+    };
+
+    const handleEdit = () => {
+        getCurrentTask(task);
     };
 
     return (
@@ -37,7 +44,9 @@ const Task = ({ task }) => {
                 )}
             </div>
             <div className="acciones">
-                <button className="btn btn-primario">Edit</button>
+                <button className="btn btn-primario" onClick={handleEdit}>
+                    Edit
+                </button>
                 <button className="btn btn-secundario" onClick={handleDelete}>
                     Delete
                 </button>
