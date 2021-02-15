@@ -1,22 +1,16 @@
 import { useContext } from "react";
 import ProjectContext from "../../context/Projects/ProjectContext";
+import TaskContext from "../../context/Tasks/TaskContext";
 import Task from "./Task";
 
 const TasksList = () => {
     const { project, deleteProject } = useContext(ProjectContext);
+    const { projectTasks } = useContext(TaskContext);
 
     if (!project) {
         return <h2>Select a Project</h2>;
     }
     const [currentProject] = project;
-
-    // This is just for testing
-    const projectTasks = [
-        { name: "Choose platform", state: true },
-        { name: "Choose colors", state: false },
-        { name: "Choose Hosting", state: false },
-        { name: "Choose Typography", state: false },
-    ];
 
     const handleDelete = () => {
         deleteProject(currentProject.id);
