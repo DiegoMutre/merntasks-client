@@ -9,6 +9,9 @@ const ProjectsList = () => {
         getProjects();
     }, []);
 
+    if (!projects.length) {
+        return <p>There are no projects, start by creating one</p>;
+    }
     return (
         <ul className="listado-proyectos">
             {projects.map(project => (
