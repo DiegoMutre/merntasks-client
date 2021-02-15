@@ -1,4 +1,5 @@
 import NewProject from "../projects/NewProject";
+import ProjectsList from "../projects/ProjectsList";
 
 const Sidebar = () => {
     return (
@@ -6,9 +7,10 @@ const Sidebar = () => {
             <h1>
                 MERN<span>Tasks</span>
             </h1>
+            <NewProject />
             <div className="proyectos">
                 <h2>Your Projects</h2>
-                <NewProject />
+                <ProjectsList />
             </div>
         </aside>
     );
