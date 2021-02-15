@@ -1,6 +1,15 @@
+import { useContext } from "react";
+import ProjectContext from "../../context/Projects/ProjectContext";
 import Task from "./Task";
 
 const TasksList = () => {
+    const { project } = useContext(ProjectContext);
+
+    if (!project) {
+        return <h2>Select a Project</h2>;
+    }
+    const [currentProject] = project;
+
     // This is just for testing
     const projectTasks = [
         { name: "Choose platform", state: true },
@@ -11,7 +20,7 @@ const TasksList = () => {
 
     return (
         <>
-            <h2>Project: Online Shop</h2>
+            <h2>Project: {currentProject.name}</h2>
             <ul className="listado-tareas">
                 {projectTasks.length <= 0 ? (
                     <li className="tarea">
