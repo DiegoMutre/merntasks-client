@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import ProjectContext from "../../context/Projects/ProjectContext";
 
 const NewProject = () => {
-    const { showForm } = useContext(ProjectContext);
+    const { showForm, toggleForm } = useContext(ProjectContext);
 
     const [project, setProject] = useState({ name: "" });
 
@@ -22,7 +22,11 @@ const NewProject = () => {
 
     return (
         <>
-            <button className="btn btn-block btn-primario" type="button">
+            <button
+                className="btn btn-block btn-primario"
+                type="button"
+                onClick={toggleForm}
+            >
                 New Project
             </button>
             {showForm && (
