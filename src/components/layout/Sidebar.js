@@ -1,3 +1,5 @@
+import NewProject from "../projects/NewProject";
+
 const Sidebar = () => {
     return (
         <aside>
@@ -6,6 +8,7 @@ const Sidebar = () => {
             </h1>
             <div className="proyectos">
                 <h2>Your Projects</h2>
+                <NewProject />
             </div>
         </aside>
     );
