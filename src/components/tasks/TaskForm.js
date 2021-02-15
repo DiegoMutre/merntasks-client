@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import ProjectContext from "../../context/Projects/ProjectContext";
 import TaskContext from "../../context/Tasks/TaskContext";
+import { v4 } from "uuid";
 
 const TaskForm = () => {
     const [task, setTask] = useState({ name: "" });
@@ -26,7 +27,12 @@ const TaskForm = () => {
             showTaskError();
             return;
         }
-        addTask({ ...task, projectId: currentProject.id, state: false });
+        addTask({
+            ...task,
+            id: v4(),
+            projectId: currentProject.id,
+            state: false,
+        });
         getTasksById(currentProject.id);
         setTask({ name: "" });
     };
