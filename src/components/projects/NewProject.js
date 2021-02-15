@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import ProjectContext from "../../context/Projects/ProjectContext";
 
 const NewProject = () => {
-    const { showForm, toggleForm } = useContext(ProjectContext);
+    const { showForm, toggleForm, addProject } = useContext(ProjectContext);
 
     const [project, setProject] = useState({ name: "" });
 
@@ -13,11 +13,13 @@ const NewProject = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        // TODO: Validate Form
+        // TODO: Show alert
+        if (project.name.trim() === "") {
+            return;
+        }
 
-        // TODO: Add to state
-
-        // TODO: Reset form
+        addProject(project);
+        setProject({ name: "" });
     };
 
     return (
