@@ -1,15 +1,35 @@
+import { useState } from "react";
+
 const NewProject = () => {
+    const [project, setProject] = useState({ name: "" });
+
+    const handleChange = e => {
+        setProject({ ...project, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // TODO: Validate Form
+
+        // TODO: Add to state
+
+        // TODO: Reset form
+    };
+
     return (
         <>
             <button className="btn btn-block btn-primario" type="button">
                 New Project
             </button>
-            <form className="formulario-nuevo-proyecto">
+            <form className="formulario-nuevo-proyecto" onSubmit={handleSubmit}>
                 <input
                     type="text"
                     className="input-text"
                     placeholder="Project Name"
                     name="name"
+                    value={project.name}
+                    onChange={handleChange}
                 />
                 <input
                     type="submit"
