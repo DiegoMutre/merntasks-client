@@ -1,5 +1,6 @@
 import {
     ADD_TASK,
+    CHANGE_TASK_STATE,
     DELETE_TASK,
     GET_TASKS_BY_ID,
     SHOW_TASK_ERROR,
@@ -29,6 +30,13 @@ const TaskReducer = (state, action) => {
             return {
                 ...state,
                 tasks: state.tasks.filter(task => task.id !== action.payload),
+            };
+        case CHANGE_TASK_STATE:
+            return {
+                ...state,
+                tasks: state.tasks.map(task =>
+                    task.id === action.payload.id ? action.payload : task
+                ),
             };
         default:
             return state;
