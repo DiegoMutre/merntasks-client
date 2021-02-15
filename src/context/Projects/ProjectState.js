@@ -4,6 +4,7 @@ import {
     GET_PROJECTS,
     ADD_PROJECT,
     SHOW_ERROR,
+    GET_CURRENT_PROJECT,
 } from "../../types";
 import ProjectContext from "./ProjectContext";
 import projectReducer from "./ProjectReducer";
@@ -20,6 +21,7 @@ const ProjectState = props => {
         projects: [],
         showForm: false,
         hasError: false,
+        project: null,
     };
 
     // Dispatch to execute the actions
@@ -49,6 +51,13 @@ const ProjectState = props => {
         });
     };
 
+    const getCurrentProject = projectId => {
+        dispatch({
+            type: GET_CURRENT_PROJECT,
+            payload: projectId,
+        });
+    };
+
     return (
         <ProjectContext.Provider
             value={{
@@ -59,6 +68,7 @@ const ProjectState = props => {
                 getProjects,
                 addProject,
                 showError,
+                getCurrentProject,
             }}
         >
             {props.children}
