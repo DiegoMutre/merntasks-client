@@ -8,7 +8,7 @@ const Projects = () => {
             <div className="seccion-principal">
                 <Bar />
                 <main>
-                    <div className="contendor-tareas"></div>
+                    <div className="contenedor-tareas"></div>
                 </main>
             </div>
         </div>
