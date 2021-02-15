@@ -2,3 +2,4 @@ export const PROJECT_FORM = "PROJECT_FORM";
 export const GET_PROJECTS = "GET_PROJECTS";
 export const ADD_PROJECT = "ADD_PROJECT";
 export const SHOW_ERROR = "SHOW_ERROR";
+export const GET_CURRENT_PROJECT = "GET_CURRENT_PROJECT";
