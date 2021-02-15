@@ -25,7 +25,7 @@ const TasksList = () => {
                         <p>There are no tasks to show</p>
                     </li>
                 ) : (
-                    projectTasks.map((task, i) => <Task key={i} task={task} />)
+                    projectTasks.map(task => <Task key={task.id} task={task} />)
                 )}
             </ul>
             <button className="btn btn-eliminar" onClick={handleDelete}>
