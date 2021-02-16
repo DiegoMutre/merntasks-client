@@ -11,3 +11,4 @@ export const SHOW_TASK_ERROR = "SHOW_TASK_ERROR";
 export const DELETE_TASK = "DELETE_TASK";
 export const CHANGE_TASK_STATE = "CHANGE_TASK_STATE";
 export const GET_CURRENT_TASK = "GET_CURRENT_TASK";
+export const UPDATE_TASK = "UPDATE_TASK";

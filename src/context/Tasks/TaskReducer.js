@@ -5,6 +5,7 @@ import {
     GET_CURRENT_TASK,
     GET_TASKS_BY_ID,
     SHOW_TASK_ERROR,
+    UPDATE_TASK,
 } from "../../types";
 
 const TaskReducer = (state, action) => {
@@ -32,6 +33,7 @@ const TaskReducer = (state, action) => {
                 ...state,
                 tasks: state.tasks.filter(task => task.id !== action.payload),
             };
+        case UPDATE_TASK:
         case CHANGE_TASK_STATE:
             return {
                 ...state,

@@ -12,6 +12,7 @@ const TaskForm = () => {
         showTaskError,
         getTasksById,
         selectedTask,
+        updateTask,
     } = useContext(TaskContext);
 
     useEffect(() => {
@@ -39,12 +40,18 @@ const TaskForm = () => {
             showTaskError();
             return;
         }
-        addTask({
-            ...task,
-            id: v4(),
-            projectId: currentProject.id,
-            state: false,
-        });
+
+        if (selectedTask) {
+            updateTask(task);
+        } else {
+            addTask({
+                ...task,
+                id: v4(),
+                projectId: currentProject.id,
+                state: false,
+            });
+        }
+
         getTasksById(currentProject.id);
         setTask({ name: "" });
     };
