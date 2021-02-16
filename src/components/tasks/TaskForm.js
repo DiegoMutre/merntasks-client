@@ -13,6 +13,7 @@ const TaskForm = () => {
         getTasksById,
         selectedTask,
         updateTask,
+        cleanSelectedTask,
     } = useContext(TaskContext);
 
     useEffect(() => {
@@ -43,6 +44,7 @@ const TaskForm = () => {
 
         if (selectedTask) {
             updateTask(task);
+            cleanSelectedTask();
         } else {
             addTask({
                 ...task,
