@@ -1,6 +1,7 @@
 import {
     ADD_TASK,
     CHANGE_TASK_STATE,
+    CLEAN_SELECTED_TASK,
     DELETE_TASK,
     GET_CURRENT_TASK,
     GET_TASKS_BY_ID,
@@ -45,6 +46,11 @@ const TaskReducer = (state, action) => {
             return {
                 ...state,
                 selectedTask: action.payload,
+            };
+        case CLEAN_SELECTED_TASK:
+            return {
+                ...state,
+                selectedTask: null,
             };
         default:
             return state;

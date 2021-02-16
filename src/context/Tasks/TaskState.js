@@ -7,6 +7,7 @@ import {
     SHOW_TASK_ERROR,
     GET_CURRENT_TASK,
     UPDATE_TASK,
+    CLEAN_SELECTED_TASK,
 } from "../../types";
 import TaskContext from "./TaskContext";
 import TaskReducer from "./TaskReducer";
@@ -82,6 +83,12 @@ const TaskState = props => {
         });
     };
 
+    const cleanSelectedTask = () => {
+        dispatch({
+            type: CLEAN_SELECTED_TASK,
+        });
+    };
+
     return (
         <TaskContext.Provider
             value={{
@@ -96,6 +103,7 @@ const TaskState = props => {
                 changeTaskState,
                 getCurrentTask,
                 updateTask,
+                cleanSelectedTask,
             }}
         >
             {props.children}
