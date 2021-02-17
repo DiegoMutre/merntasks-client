@@ -1,6 +1,10 @@
 import { useReducer } from "react";
 import axiosClient from "../../config/axios";
-import { REGISTRATION_ERROR, REGISTRATION_SUCCESSFUL } from "../../types";
+import {
+    LOGIN_ERROR,
+    REGISTRATION_ERROR,
+    REGISTRATION_SUCCESSFUL,
+} from "../../types";
 import { AuthContext } from "./AuthContext";
 import AuthReducer from "./AuthReducer";
 
@@ -17,7 +21,7 @@ const AuthState = props => {
     const registerUser = async data => {
         try {
             const res = await axiosClient.post("/api/users", data);
-            console.log(res);
+            getUserAuthenticated();
             dispatch({
                 type: REGISTRATION_SUCCESSFUL,
                 payload: res.data,
@@ -32,6 +36,22 @@ const AuthState = props => {
                     msg: alert,
                     category: "error",
                 },
+            });
+        }
+    };
+
+    const getUserAuthenticated = async () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            // TODO: Send token through the header
+        }
+
+        try {
+            const res = await axiosClient.get("/api/auth");
+            console.log(res);
+        } catch (error) {
+            dispatch({
+                type: LOGIN_ERROR,
             });
         }
     };

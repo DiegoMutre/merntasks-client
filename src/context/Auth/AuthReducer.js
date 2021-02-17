@@ -1,4 +1,8 @@
-import { REGISTRATION_ERROR, REGISTRATION_SUCCESSFUL } from "../../types";
+import {
+    LOGIN_ERROR,
+    REGISTRATION_ERROR,
+    REGISTRATION_SUCCESSFUL,
+} from "../../types";
 
 const AuthReducer = (state, action) => {
     switch (action.type) {
@@ -9,7 +13,9 @@ const AuthReducer = (state, action) => {
                 authenticated: true,
                 msg: null,
             };
+        case LOGIN_ERROR:
         case REGISTRATION_ERROR:
+            localStorage.removeItem("token");
             return {
                 ...state,
                 token: null,
