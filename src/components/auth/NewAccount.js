@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AlertContext } from "../../context/Alerts/AlertContext";
 
 const NewAccount = () => {
+    const { alert, showAlert } = useContext(AlertContext);
+
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -18,7 +21,11 @@ const NewAccount = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        // TODO: Validate
+        // Check for empty strings
+        if (Object.values(user).some(input => input.trim() === "")) {
+            showAlert("All fields are required", "error");
+            return;
+        }
 
         // TODO: Minimum password 6 characters
 
@@ -29,9 +36,14 @@ const NewAccount = () => {
 
     return (
         <div className="form-usuario">
+            {alert && (
+                <div className={`alerta alerta-${alert.category}`}>
+                    {alert.msg}
+                </div>
+            )}
             <div className="contenedor-form sombra-dark">
                 <h1>Get an Account</h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate={true}>
                     <div className="campo-form">
                         <label htmlFor="name">Name</label>
                         <input
