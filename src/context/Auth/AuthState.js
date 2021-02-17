@@ -29,7 +29,7 @@ const AuthState = props => {
             dispatch({
                 type: REGISTRATION_ERROR,
                 payload: {
-                    msg: alert.msg,
+                    msg: alert,
                     category: "error",
                 },
             });
