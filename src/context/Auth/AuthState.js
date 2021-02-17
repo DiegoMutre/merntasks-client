@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import axiosClient from "../../../config/axios";
+import axiosClient from "../../config/axios";
 import { REGISTRATION_ERROR, REGISTRATION_SUCCESSFUL } from "../../types";
 import { AuthContext } from "./AuthContext";
 import AuthReducer from "./AuthReducer";
