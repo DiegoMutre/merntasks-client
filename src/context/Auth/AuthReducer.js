@@ -1,4 +1,5 @@
 import {
+    GET_USER,
     LOGIN_ERROR,
     REGISTRATION_ERROR,
     REGISTRATION_SUCCESSFUL,
@@ -20,6 +21,11 @@ const AuthReducer = (state, action) => {
                 ...state,
                 token: null,
                 msg: action.payload,
+            };
+        case GET_USER:
+            return {
+                ...state,
+                user: action.payload,
             };
         default:
             return state;
