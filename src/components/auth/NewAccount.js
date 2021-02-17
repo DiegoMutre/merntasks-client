@@ -1,11 +1,24 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AlertContext } from "../../context/Alerts/AlertContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
 
-const NewAccount = () => {
+const NewAccount = props => {
     const { alert, showAlert } = useContext(AlertContext);
-    const { registerUser } = useContext(AuthContext);
+    const { registerUser, msg, authenticated } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (authenticated) {
+            // Redirect to dashboard
+            props.history.push("/projects");
+        }
+
+        if (msg) {
+            showAlert(msg.msg, msg.category);
+        }
+
+        // TODO: Fix loop when i put show alert as dependency
+    }, [authenticated, msg, props]);
 
     const [user, setUser] = useState({
         name: "",
