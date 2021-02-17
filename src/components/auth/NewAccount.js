@@ -27,9 +27,20 @@ const NewAccount = () => {
             return;
         }
 
-        // TODO: Minimum password 6 characters
+        // Check for minimum password 6 characters
+        if (password.length < 6) {
+            showAlert(
+                "The password must be at least 6 characters long",
+                "error"
+            );
+            return;
+        }
 
-        // TODO: The 2 password are the same
+        // The 2 password are the same
+        if (password !== confirm) {
+            showAlert("Passwords do not match", "error");
+            return;
+        }
 
         // TODO: Pass to action
     };
