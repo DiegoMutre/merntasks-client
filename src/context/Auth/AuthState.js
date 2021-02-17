@@ -1,4 +1,6 @@
 import { useReducer } from "react";
+import axiosClient from "../../../config/axios";
+import { REGISTRATION_ERROR, REGISTRATION_SUCCESSFUL } from "../../types";
 import { AuthContext } from "./AuthContext";
 import AuthReducer from "./AuthReducer";
 
@@ -12,6 +14,22 @@ const AuthState = props => {
 
     const [state, dispatch] = useReducer(AuthReducer, initialState);
 
+    // NOT FINISHED
+    const registerUser = async data => {
+        try {
+            const res = await axiosClient.post("/api/users");
+            console.log(res);
+            dispatch({
+                type: REGISTRATION_SUCCESSFUL,
+            });
+        } catch (error) {
+            console.error(error);
+            dispatch({
+                type: REGISTRATION_ERROR,
+            });
+        }
+    };
+
     return (
         <AuthContext.Provider
             value={{
@@ -19,6 +37,7 @@ const AuthState = props => {
                 authenticated: state.authenticated,
                 user: state.user,
                 msg: state.msg,
+                registerUser,
             }}
         >
             {props.children}
