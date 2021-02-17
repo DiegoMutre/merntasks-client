@@ -1,6 +1,8 @@
 import { useReducer } from "react";
 import axiosClient from "../../config/axios";
+import setHeaderToken from "../../config/token";
 import {
+    GET_USER,
     LOGIN_ERROR,
     REGISTRATION_ERROR,
     REGISTRATION_SUCCESSFUL,
@@ -21,11 +23,11 @@ const AuthState = props => {
     const registerUser = async data => {
         try {
             const res = await axiosClient.post("/api/users", data);
-            getUserAuthenticated();
             dispatch({
                 type: REGISTRATION_SUCCESSFUL,
                 payload: res.data,
             });
+            getUserAuthenticated();
         } catch (error) {
             // Get error message
             const alert = error.response.data.msg;
@@ -43,12 +45,15 @@ const AuthState = props => {
     const getUserAuthenticated = async () => {
         const token = localStorage.getItem("token");
         if (token) {
-            // TODO: Send token through the header
+            setHeaderToken(token);
         }
 
         try {
             const res = await axiosClient.get("/api/auth");
-            console.log(res);
+            dispatch({
+                type: GET_USER,
+                payload: res.data,
+            });
         } catch (error) {
             dispatch({
                 type: LOGIN_ERROR,
