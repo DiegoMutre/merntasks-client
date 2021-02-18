@@ -4,6 +4,7 @@ import {
     LOGIN_SUCCESSFUL,
     REGISTRATION_ERROR,
     REGISTRATION_SUCCESSFUL,
+    SIGN_OFF,
 } from "../../types";
 
 const AuthReducer = (state, action) => {
@@ -17,17 +18,21 @@ const AuthReducer = (state, action) => {
                 msg: null,
             };
         case LOGIN_ERROR:
+        case SIGN_OFF:
         case REGISTRATION_ERROR:
             localStorage.removeItem("token");
             return {
                 ...state,
                 token: null,
+                user: null,
+                authenticated: null,
                 msg: action.payload,
             };
         case GET_USER:
             return {
                 ...state,
                 user: action.payload,
+                authenticated: true,
             };
         default:
             return state;
