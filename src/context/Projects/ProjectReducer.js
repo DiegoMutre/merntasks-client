@@ -3,6 +3,7 @@ import {
     DELETE_PROJECT,
     GET_CURRENT_PROJECT,
     GET_PROJECTS,
+    PROJECT_ERROR,
     PROJECT_FORM,
     SHOW_ERROR,
 } from "../../types";
@@ -42,6 +43,11 @@ const projectReducer = (state, action) => {
                     project => project._id !== action.payload
                 ),
                 project: null,
+            };
+        case PROJECT_ERROR:
+            return {
+                ...state,
+                msg: action.payload,
             };
         default:
             return state;

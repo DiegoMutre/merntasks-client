@@ -6,6 +6,7 @@ import {
     SHOW_ERROR,
     GET_CURRENT_PROJECT,
     DELETE_PROJECT,
+    PROJECT_ERROR,
 } from "../../types";
 import ProjectContext from "./ProjectContext";
 import projectReducer from "./ProjectReducer";
@@ -17,6 +18,7 @@ const ProjectState = props => {
         showForm: false,
         hasError: false,
         project: null,
+        msg: null,
     };
 
     // Dispatch to execute the actions
@@ -36,7 +38,14 @@ const ProjectState = props => {
                 payload: res.data,
             });
         } catch (error) {
-            console.error(error);
+            const alert = {
+                msg: "An error has occurred",
+                category: "error",
+            };
+            dispatch({
+                type: PROJECT_ERROR,
+                payload: alert,
+            });
         }
     };
 
@@ -48,7 +57,14 @@ const ProjectState = props => {
                 payload: res.data,
             });
         } catch (error) {
-            console.error(error);
+            const alert = {
+                msg: "An error has occurred",
+                category: "error",
+            };
+            dispatch({
+                type: PROJECT_ERROR,
+                payload: alert,
+            });
         }
     };
 
@@ -73,7 +89,14 @@ const ProjectState = props => {
                 payload: projectId,
             });
         } catch (error) {
-            console.error(error);
+            const alert = {
+                msg: "An error has occurred",
+                category: "error",
+            };
+            dispatch({
+                type: PROJECT_ERROR,
+                payload: alert,
+            });
         }
     };
 
@@ -84,6 +107,7 @@ const ProjectState = props => {
                 projects: state.projects,
                 showForm: state.showForm,
                 hasError: state.hasError,
+                msg: state.msg,
                 toggleForm,
                 getProjects,
                 addProject,
