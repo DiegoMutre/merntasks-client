@@ -16,18 +16,25 @@ import TaskReducer from "./TaskReducer";
 const TaskState = props => {
     const initialState = {
         tasks: [],
-        projectTasks: null,
+        projectTasks: [],
         taskHasError: false,
         selectedTask: null,
     };
 
     const [state, dispatch] = useReducer(TaskReducer, initialState);
 
-    const getTasksById = projectId => {
-        dispatch({
-            type: GET_TASKS_BY_ID,
-            payload: projectId,
-        });
+    const getTasksById = async project_id => {
+        try {
+            const res = await axiosClient.get("/api/tasks", {
+                params: { project_id },
+            });
+            dispatch({
+                type: GET_TASKS_BY_ID,
+                payload: res.data,
+            });
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const addTask = async task => {
