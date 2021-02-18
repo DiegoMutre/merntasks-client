@@ -4,6 +4,7 @@ import setHeaderToken from "../../config/token";
 import {
     GET_USER,
     LOGIN_ERROR,
+    LOGIN_SUCCESSFUL,
     REGISTRATION_ERROR,
     REGISTRATION_SUCCESSFUL,
 } from "../../types";
@@ -64,11 +65,14 @@ const AuthState = props => {
     const logIn = async data => {
         try {
             const res = await axiosClient.post("/api/auth", data);
-            console.log(res);
+            dispatch({
+                type: LOGIN_SUCCESSFUL,
+                payload: res.data,
+            });
+            getUserAuthenticated();
         } catch (error) {
             // Get error message
             const alert = error.response.data.msg;
-
             dispatch({
                 type: LOGIN_ERROR,
                 payload: {
