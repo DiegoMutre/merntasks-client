@@ -16,6 +16,7 @@ const AuthReducer = (state, action) => {
                 ...state,
                 authenticated: true,
                 msg: null,
+                loading: false,
             };
         case LOGIN_ERROR:
         case SIGN_OFF:
@@ -33,6 +34,7 @@ const AuthReducer = (state, action) => {
                 ...state,
                 user: action.payload,
                 authenticated: true,
+                loading: false,
             };
         default:
             return state;
