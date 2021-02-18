@@ -7,8 +7,8 @@ const Project = ({ project }) => {
     const { getTasksById } = useContext(TaskContext);
 
     const handleClick = () => {
-        getCurrentProject(project.id);
-        getTasksById(project.id);
+        getCurrentProject(project._id);
+        getTasksById(project._id);
     };
 
     return (
