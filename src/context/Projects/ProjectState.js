@@ -10,6 +10,7 @@ import {
 import ProjectContext from "./ProjectContext";
 import projectReducer from "./ProjectReducer";
 import { v4 } from "uuid";
+import axiosClient from "../../config/axios";
 
 const fakeProjects = [
     { id: 1, name: "Online shop" },
@@ -39,11 +40,16 @@ const ProjectState = props => {
         dispatch({ type: GET_PROJECTS, payload: fakeProjects });
     };
 
-    const addProject = (project = {}) => {
-        dispatch({
-            type: ADD_PROJECT,
-            payload: { ...project, id: v4() },
-        });
+    const addProject = async (project = {}) => {
+        try {
+            const res = await axiosClient.post("/api/projects", project);
+            dispatch({
+                type: ADD_PROJECT,
+                payload: res.data,
+            });
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const showError = () => {
