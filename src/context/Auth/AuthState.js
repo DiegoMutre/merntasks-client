@@ -7,6 +7,7 @@ import {
     LOGIN_SUCCESSFUL,
     REGISTRATION_ERROR,
     REGISTRATION_SUCCESSFUL,
+    SIGN_OFF,
 } from "../../types";
 import { AuthContext } from "./AuthContext";
 import AuthReducer from "./AuthReducer";
@@ -83,6 +84,12 @@ const AuthState = props => {
         }
     };
 
+    const logOut = () => {
+        dispatch({
+            type: SIGN_OFF,
+        });
+    };
+
     return (
         <AuthContext.Provider
             value={{
@@ -93,6 +100,7 @@ const AuthState = props => {
                 registerUser,
                 logIn,
                 getUserAuthenticated,
+                logOut,
             }}
         >
             {props.children}
