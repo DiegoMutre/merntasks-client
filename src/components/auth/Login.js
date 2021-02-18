@@ -1,11 +1,21 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AlertContext } from "../../context/Alerts/AlertContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
 
-const Login = () => {
+const Login = props => {
     const { alert, showAlert } = useContext(AlertContext);
-    const { msg, logIn } = useContext(AuthContext);
+    const { msg, authenticated, logIn } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (msg) {
+            showAlert(msg.msg, msg.category);
+        }
+
+        if (authenticated) {
+            props.history.push("/projects");
+        }
+    }, [msg, authenticated, props]);
 
     const [user, setUser] = useState({ email: "", password: "" });
 
