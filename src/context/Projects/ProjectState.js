@@ -9,14 +9,7 @@ import {
 } from "../../types";
 import ProjectContext from "./ProjectContext";
 import projectReducer from "./ProjectReducer";
-import { v4 } from "uuid";
 import axiosClient from "../../config/axios";
-
-const fakeProjects = [
-    { id: 1, name: "Online shop" },
-    { id: 2, name: "Web Design" },
-    { id: 3, name: "To do homework" },
-];
 
 const ProjectState = props => {
     const initialState = {
@@ -35,9 +28,16 @@ const ProjectState = props => {
         });
     };
 
-    // 'projects' param will be used after
-    const getProjects = (projects = []) => {
-        dispatch({ type: GET_PROJECTS, payload: fakeProjects });
+    const getProjects = async () => {
+        try {
+            const res = await axiosClient.get("/api/projects");
+            dispatch({
+                type: GET_PROJECTS,
+                payload: res.data,
+            });
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const addProject = async (project = {}) => {
