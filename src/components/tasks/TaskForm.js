@@ -48,13 +48,11 @@ const TaskForm = () => {
         } else {
             addTask({
                 ...task,
-                id: v4(),
-                projectId: currentProject.id,
-                state: false,
+                project_id: currentProject._id,
             });
         }
 
-        getTasksById(currentProject.id);
+        getTasksById(currentProject._id);
         setTask({ name: "" });
     };
 
