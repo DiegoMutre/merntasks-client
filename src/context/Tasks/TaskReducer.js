@@ -14,9 +14,7 @@ const TaskReducer = (state, action) => {
         case GET_TASKS_BY_ID:
             return {
                 ...state,
-                projectTasks: state.tasks.filter(
-                    task => task.projectId === action.payload
-                ),
+                projectTasks: action.payload,
             };
         case ADD_TASK:
             return {
