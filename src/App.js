@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./components/auth/Login";
 import NewAccount from "./components/auth/NewAccount";
 import Projects from "./components/projects/Projects";
+import PrivateRoute from "./components/routes/PrivateRoute";
 import setHeaderToken from "./config/token";
 import AlertState from "./context/Alerts/AlertState";
 import AuthState from "./context/Auth/AuthState";
@@ -28,7 +29,7 @@ function App() {
                                     path="/new-account"
                                     component={NewAccount}
                                 />
-                                <Route
+                                <PrivateRoute
                                     exact
                                     path="/projects"
                                     component={Projects}
