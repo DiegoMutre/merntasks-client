@@ -12,8 +12,8 @@ const Task = ({ task }) => {
     const { project } = useContext(ProjectContext);
 
     const handleDelete = () => {
-        deleteTask(task.id);
-        getTasksById(project[0].id);
+        deleteTask(task._id, project[0]._id);
+        getTasksById(project[0]._id);
     };
 
     const handleClick = () => {
