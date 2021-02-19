@@ -69,13 +69,6 @@ const TaskState = props => {
         }
     };
 
-    const changeTaskState = task => {
-        dispatch({
-            type: CHANGE_TASK_STATE,
-            payload: task,
-        });
-    };
-
     const getCurrentTask = task => {
         dispatch({
             type: GET_CURRENT_TASK,
@@ -83,11 +76,16 @@ const TaskState = props => {
         });
     };
 
-    const updateTask = task => {
-        dispatch({
-            type: UPDATE_TASK,
-            payload: task,
-        });
+    const updateTask = async task => {
+        try {
+            const res = await axiosClient.put(`/api/tasks/${task._id}`, task);
+            dispatch({
+                type: UPDATE_TASK,
+                payload: res.data,
+            });
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const cleanSelectedTask = () => {
@@ -107,7 +105,6 @@ const TaskState = props => {
                 addTask,
                 showTaskError,
                 deleteTask,
-                changeTaskState,
                 getCurrentTask,
                 updateTask,
                 cleanSelectedTask,

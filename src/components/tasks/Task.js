@@ -3,12 +3,9 @@ import ProjectContext from "../../context/Projects/ProjectContext";
 import TaskContext from "../../context/Tasks/TaskContext";
 
 const Task = ({ task }) => {
-    const {
-        deleteTask,
-        getTasksById,
-        changeTaskState,
-        getCurrentTask,
-    } = useContext(TaskContext);
+    const { deleteTask, getTasksById, updateTask, getCurrentTask } = useContext(
+        TaskContext
+    );
     const { project } = useContext(ProjectContext);
 
     const handleDelete = () => {
@@ -22,7 +19,7 @@ const Task = ({ task }) => {
         } else {
             task.state = true;
         }
-        changeTaskState(task);
+        updateTask(task);
     };
 
     const handleEdit = () => {

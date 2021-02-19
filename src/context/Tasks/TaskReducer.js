@@ -1,6 +1,5 @@
 import {
     ADD_TASK,
-    CHANGE_TASK_STATE,
     CLEAN_SELECTED_TASK,
     DELETE_TASK,
     GET_CURRENT_TASK,
@@ -35,11 +34,10 @@ const TaskReducer = (state, action) => {
                 ),
             };
         case UPDATE_TASK:
-        case CHANGE_TASK_STATE:
             return {
                 ...state,
-                tasks: state.tasks.map(task =>
-                    task.id === action.payload.id ? action.payload : task
+                projectTasks: state.projectTasks.map(task =>
+                    task._id === action.payload._id ? action.payload : task
                 ),
             };
         case GET_CURRENT_TASK:
