@@ -19,7 +19,7 @@ const TaskReducer = (state, action) => {
         case ADD_TASK:
             return {
                 ...state,
-                tasks: [action.payload, ...state.tasks],
+                projectTasks: [action.payload, ...state.projectTasks],
                 taskHasError: false,
             };
         case SHOW_TASK_ERROR:
