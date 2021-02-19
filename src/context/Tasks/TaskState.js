@@ -2,7 +2,6 @@ import { useReducer } from "react";
 import axiosClient from "../../config/axios";
 import {
     ADD_TASK,
-    CHANGE_TASK_STATE,
     DELETE_TASK,
     GET_TASKS_BY_ID,
     SHOW_TASK_ERROR,
