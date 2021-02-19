@@ -10,7 +10,6 @@ export const GET_TASKS_BY_ID = "GET_TASKS_BY_ID";
 export const ADD_TASK = "ADD_TASK";
 export const SHOW_TASK_ERROR = "SHOW_TASK_ERROR";
 export const DELETE_TASK = "DELETE_TASK";
-export const CHANGE_TASK_STATE = "CHANGE_TASK_STATE";
 export const GET_CURRENT_TASK = "GET_CURRENT_TASK";
 export const UPDATE_TASK = "UPDATE_TASK";
 export const CLEAN_SELECTED_TASK = "CLEAN_SELECTED_TASK";
